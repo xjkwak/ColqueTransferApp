@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { IonicPage, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { Subscription } from 'rxjs/Subscription';
 import { ContactProvider } from '../../providers/contact/contact';
+import { TransferProvider } from '../../providers/transfer/transfer';
 
 /**
  * Generated class for the TransferModalPage page.
@@ -16,20 +17,25 @@ import { ContactProvider } from '../../providers/contact/contact';
   templateUrl: 'transfer-modal.html',
 })
 export class TransferModalPage implements OnDestroy{
-
-  currency :{}[] = [];
-  selectedCurrency : number;
-  selectedContact: {};
-  contactName;
-  contactAccount:{}[];
+  public selectedContact: {};
+  private dataTransfer;
   subscription: Subscription;
+  
   constructor(public navParams: NavParams,
     private view: ViewController,
     public modalCtrl: ModalController,
-    public contactService: ContactProvider) {
+    public contactService: ContactProvider, public trasnferService: TransferProvider) {
+      this.dataTransfer = {
+        'contactName':'',
+        'amount':'',
+        'originAccount':'',
+        'destinyAccount': '',
+        'description': ''
+      }
       this.subscription = this.contactService.getValues().subscribe(data => {
-        this.contactName = data.name;
-        this.selectContact = data;
+        this.dataTransfer.contactName = data.name;
+        this.dataTransfer.destinyAccount = data.phone;
+        this.selectedContact = data;
       });
   }
 
@@ -42,10 +48,12 @@ export class TransferModalPage implements OnDestroy{
 
   /**Tranfer money */
   transferir() {
+    console.log(this.dataTransfer);
+    this.trasnferService.sendTranferData(this.dataTransfer);
     this.closeModal();
   }
 
-  selectContact() {
+  openSelectContact() {
     console.log("select contact load");
     let modal = this.modalCtrl.create('ContactListPage');
     modal.present();

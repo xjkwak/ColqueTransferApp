@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>transferModal</ion-title>
+    <ion-title>Transferencia</ion-title>
     <ion-buttons end>
       <button ion-button (click)="closeModal()">
         <ion-icon name="close"></ion-icon>
@@ -22,27 +22,23 @@
   <ion-list>
     <ion-item>
       <ion-label floating>Contacto</ion-label>
-      <ion-input type="text" [(ngModel)]="contactName" (click)="selectContact()"></ion-input>
+      <ion-input type="text" [(ngModel)]="dataTransfer.contactName" (click)="openSelectContact()" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Monto</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label floating>Monto (BS)</ion-label>
+      <ion-input type="number" [(ngModel)]="dataTransfer.amount" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Tipo Moneda</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label floating>Cuenta Origen (Teléfono)</ion-label>
+      <ion-input type="text" [(ngModel)]="dataTransfer.originAccount" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Cuenta Origen</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label floating>Cuenta Destino (Teléfono)</ion-label>
+      <ion-input type="text" [(ngModel)]="dataTransfer.destinyAccount" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>CuentaDestino</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Detalle</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label floating>Motivo</ion-label>
+      <ion-input type="text" [(ngModel)]="dataTransfer.description" required></ion-input>
     </ion-item>
   </ion-list>
 </ion-content>

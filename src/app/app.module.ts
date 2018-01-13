@@ -9,6 +9,7 @@ import { Contacts } from '@ionic-native/contacts';
 import { IonicStorageModule } from '@ionic/storage';
 import { ContactProvider } from '../providers/contact/contact';
 import { HttpClientModule } from '@angular/common/http';
+import { TransferProvider } from '../providers/transfer/transfer';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     SplashScreen,
     Contacts,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ContactProvider
+    ContactProvider,
+    TransferProvider
   ]
 })
 export class AppModule {}

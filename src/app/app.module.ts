@@ -16,8 +16,11 @@ import { TransferProvider } from '../providers/transfer/transfer';
     MyApp
   ],
   imports: [
-    BrowserModule,    
-    IonicStorageModule.forRoot(),
+    BrowserModule,
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -34,4 +37,4 @@ import { TransferProvider } from '../providers/transfer/transfer';
     TransferProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

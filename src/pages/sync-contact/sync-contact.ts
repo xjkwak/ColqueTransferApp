@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
+import { ContactPhone } from '../../models/contact-phone';
 
 /**
  * Generated class for the SyncContactPage page.
@@ -18,7 +19,7 @@ import { LoadingController } from 'ionic-angular';
 })
 export class SyncContactPage {
 
-  private contactList: any;
+  private contactList: ContactPhone[]=[];
   private loader: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -32,8 +33,14 @@ export class SyncContactPage {
     this.loader.present();
 
     this.contacts.find(['*'], { filter: "", multiple: true })
-      .then(data => {
-        this.contactList = data;
+      .then(data => {       
+
+        for (let item of data) {
+          let contact = new ContactPhone(item.displayName,
+            item.phoneNumbers[0].value);
+          this.contactList.push(contact);
+        }
+
         console.log(this.contactList);
         storage.set('contacts', this.contactList);
         this.loader.dismiss();

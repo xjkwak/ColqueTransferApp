@@ -11,5 +11,8 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
 
   }
+  startTransfer() {
+    this.navCtrl.push('TransferPage');
+  }
 
 }

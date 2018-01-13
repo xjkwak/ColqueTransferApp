@@ -19,7 +19,7 @@ import { ContactPhone } from '../../models/contact-phone';
 })
 export class SyncContactPage {
 
-  private contactList: ContactPhone[]=[];
+  private contactList: ContactPhone[] = [];
   private loader: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -33,12 +33,17 @@ export class SyncContactPage {
     this.loader.present();
 
     this.contacts.find(['*'], { filter: "", multiple: true })
-      .then(data => {       
+      .then(data => {
 
         for (let item of data) {
-          let contact = new ContactPhone(item.displayName,
-            item.phoneNumbers[0].value);
-          this.contactList.push(contact);
+          try {
+            let contact = new ContactPhone(item.displayName,
+              item.phoneNumbers[0].value);
+            this.contactList.push(contact);
+          }
+          catch (e) {
+            console.log(e, item);
+          }
         }
 
         console.log(this.contactList);

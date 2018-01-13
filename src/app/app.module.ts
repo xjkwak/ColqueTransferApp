@@ -15,8 +15,11 @@ import { HttpClientModule } from '@angular/common/http';
     MyApp
   ],
   imports: [
-    BrowserModule,    
-    IonicStorageModule.forRoot(),
+    BrowserModule,
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -28,8 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     Contacts,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     ContactProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

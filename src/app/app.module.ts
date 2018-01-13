@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { Contacts } from '@ionic-native/contacts';
+import { IonicStorageModule } from '@ionic/storage';
 import { ContactProvider } from '../providers/contact/contact';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -14,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
     MyApp
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,    
+    IonicStorageModule.forRoot(),
     HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],

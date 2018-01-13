@@ -26,7 +26,10 @@ export class ContactListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContactListPage');
-    this.contacts = this.contactService.getContactList();
+    this.contactService.getContactList().then((val) => {
+      console.log('contacts', val);
+      this.contacts = val;
+    });;
     
   }
 

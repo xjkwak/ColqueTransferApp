@@ -16,16 +16,17 @@ import { TransferProvider } from '../providers/transfer/transfer';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule, AngularFireAuth} from 'angularfire2/auth';
 import {AngularFireDatabaseModule, AngularFireDatabase} from 'angularfire2/database';
+import { ProfileProvider } from '../providers/profile/profile';
 
 
  // Initialize Firebase
  export const configFirebase = {
-  apiKey: "AIzaSyChf-IjlFj_qyIyWtlsOihlpq7JJQ2bpjA",
-  authDomain: "chationicapp-4dfe4.firebaseapp.com",
-  databaseURL: "https://chationicapp-4dfe4.firebaseio.com",
-  projectId: "chationicapp-4dfe4",
-  storageBucket: "chationicapp-4dfe4.appspot.com",
-  messagingSenderId: "369841428023"
+  apiKey: "AIzaSyBb624vSFfwXZyDkTIA_Lk8TLYsZOT3w4Y",
+    authDomain: "chationicv3.firebaseapp.com",
+    databaseURL: "https://chationicv3.firebaseio.com",
+    projectId: "chationicv3",
+    storageBucket: "chationicv3.appspot.com",
+    messagingSenderId: "10085583664"
 };
 
 @NgModule({
@@ -56,7 +57,8 @@ import {AngularFireDatabaseModule, AngularFireDatabase} from 'angularfire2/datab
     TransferProvider,
     HttpClient,
     AngularFireDatabase,
-    AngularFireAuth
+    AngularFireAuth,
+    ProfileProvider
   ]
 })
 export class AppModule { }

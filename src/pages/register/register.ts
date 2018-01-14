@@ -33,7 +33,7 @@ export class RegisterPage {
     .then(result => {
     
       this.afAuth.authState.subscribe(auth => {
-        this.afDatabase.list('/profile/' + auth.uid).push(this.profile).then(()=> this.navCtrl.push('SyncContactPage'));
+        this.afDatabase.list('/profile/').set(auth.uid, this.profile).then(()=> this.navCtrl.push('SyncContactPage'));
       });
 
     }).catch(err => {

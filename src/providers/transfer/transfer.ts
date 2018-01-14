@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
+//firebase
+import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
+//import { AngularFireAuth } from 'angularfire2/auth';
+import { Transfer } from '../../models/transfer';
 /*
   Generated class for the TransferProvider provider.
 
@@ -12,16 +16,17 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class TransferProvider {
   subject = new Subject();
-  constructor(public http: HttpClient) {
-    console.log('Hello ContactProvider Provider');
+  transfers: AngularFireList<Transfer>
+  constructor(public http: HttpClient, public transfersDb: AngularFireDatabase) {
+    this.transfers = transfersDb.list('/transfers');
   }
 
-  sendTranferData(data) {
-    this.subject.next(data);
+  sendTranferData(transfer: Transfer) {
+    this.transfers.push(transfer);
   }
 
-  getTranferData() : Observable<any> {
-    return this.subject.asObservable();
+  getTranferData() : Observable<Transfer[]> {
+    return this.transfers.valueChanges();
   }
 
 }

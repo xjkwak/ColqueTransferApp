@@ -9,7 +9,24 @@ import { Contacts } from '@ionic-native/contacts';
 import { IonicStorageModule } from '@ionic/storage';
 import { ContactProvider } from '../providers/contact/contact';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { TransferProvider } from '../providers/transfer/transfer';
+
+//Firebase
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireAuthModule, AngularFireAuth} from 'angularfire2/auth';
+import {AngularFireDatabaseModule, AngularFireDatabase} from 'angularfire2/database';
+
+
+ // Initialize Firebase
+ export const configFirebase = {
+  apiKey: "AIzaSyChf-IjlFj_qyIyWtlsOihlpq7JJQ2bpjA",
+  authDomain: "chationicapp-4dfe4.firebaseapp.com",
+  databaseURL: "https://chationicapp-4dfe4.firebaseio.com",
+  projectId: "chationicapp-4dfe4",
+  storageBucket: "chationicapp-4dfe4.appspot.com",
+  messagingSenderId: "369841428023"
+};
 
 @NgModule({
   declarations: [
@@ -22,6 +39,8 @@ import { TransferProvider } from '../providers/transfer/transfer';
       driverOrder: ['indexeddb', 'sqlite', 'websql']
     }),
     HttpClientModule,
+    AngularFireModule.initializeApp(configFirebase),
+    AngularFireDatabaseModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -34,7 +53,9 @@ import { TransferProvider } from '../providers/transfer/transfer';
     Contacts,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ContactProvider,
-    TransferProvider
+    TransferProvider,
+    HttpClient,
+    AngularFireDatabase
   ]
 })
 export class AppModule { }

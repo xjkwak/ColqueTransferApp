@@ -1,6 +1,9 @@
+
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ModalOptions } from 'ionic-angular';
 import { TransferProvider } from '../../providers/transfer/transfer';
+import { Transfer } from '../../models/transfer';
 
 /**
  * Generated class for the TransferPage page.
@@ -15,7 +18,7 @@ import { TransferProvider } from '../../providers/transfer/transfer';
   templateUrl: 'transfer.html',
 })
 export class TransferPage {
-  public historicTranfer:{}={};
+  public historicTranfer: Transfer[];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -24,6 +27,7 @@ export class TransferPage {
   ) {
 
     this.transferService.getTranferData().subscribe(data => {
+      console.log('recover Data');
       this.historicTranfer = data;
     })
   }
@@ -40,7 +44,7 @@ export class TransferPage {
     let modal = this.modalCtrl.create('TransferModalPage', {}, myModalOptions);
     modal.present();
   }
-//Se realizo una tranferencia a {{historicTranfer.destinyAccount}} de {{historicTranfer.amount}}
+
   isEmpty() {
     return Object.keys(this.historicTranfer).length === 0;
   }

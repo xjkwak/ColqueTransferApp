@@ -3,6 +3,7 @@ import { IonicPage, NavParams, ViewController, ModalController } from 'ionic-ang
 import { Subscription } from 'rxjs/Subscription';
 import { ContactProvider } from '../../providers/contact/contact';
 import { TransferProvider } from '../../providers/transfer/transfer';
+import { Transfer } from '../../models/transfer';
 
 /**
  * Generated class for the TransferModalPage page.
@@ -18,13 +19,15 @@ import { TransferProvider } from '../../providers/transfer/transfer';
 })
 export class TransferModalPage implements OnDestroy{
   public selectedContact: {};
+  private data: Transfer;
   private dataTransfer;
   subscription: Subscription;
   
   constructor(public navParams: NavParams,
     private view: ViewController,
     public modalCtrl: ModalController,
-    public contactService: ContactProvider, public trasnferService: TransferProvider) {
+    public contactService: ContactProvider,
+    public trasnferService: TransferProvider) {
       this.dataTransfer = {
         'contactName':'',
         'amount':'',
@@ -48,13 +51,18 @@ export class TransferModalPage implements OnDestroy{
 
   /**Tranfer money */
   transferir() {
-    console.log(this.dataTransfer);
-    this.trasnferService.sendTranferData(this.dataTransfer);
+    this.data = new Transfer(
+      this.dataTransfer.contactName,
+      this.dataTransfer.amount,
+      this.dataTransfer.originAccount,
+      this.dataTransfer.destinyAccount,
+      this.dataTransfer.description
+    )
+    this.trasnferService.sendTranferData(this.data);
     this.closeModal();
   }
 
   openSelectContact() {
-    console.log("select contact load");
     let modal = this.modalCtrl.create('ContactListPage');
     modal.present();
   }

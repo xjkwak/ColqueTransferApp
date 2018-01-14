@@ -55,7 +55,8 @@ import {AngularFireDatabaseModule, AngularFireDatabase} from 'angularfire2/datab
     ContactProvider,
     TransferProvider,
     HttpClient,
-    AngularFireDatabase
+    AngularFireDatabase,
+    AngularFireAuth
   ]
 })
 export class AppModule { }

@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 
 //firebase
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
-//import { AngularFireAuth } from 'angularfire2/auth';
 import { Transfer } from '../../models/transfer';
 /*
   Generated class for the TransferProvider provider.

@@ -29,10 +29,15 @@ export class LoginPage {
     console.log(this.user);
     this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
     .then(result => {
+      this.clearFields();
       this.navCtrl.push('SyncContactPage');
     }).catch(err => {
       console.log(err.message);
     });
+  }
 
+  clearFields() {
+    this.user.email = "";
+    this.user.password = "";
   }
 }

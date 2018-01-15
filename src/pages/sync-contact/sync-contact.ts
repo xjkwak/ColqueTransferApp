@@ -37,8 +37,9 @@ export class SyncContactPage {
 
         for (let item of data) {
           try {
-            let contact = new ContactPhone(item.displayName,
-              item.phoneNumbers[0].value);
+            let phoneNumber = item.phoneNumbers[0].value;                        
+            phoneNumber = phoneNumber.replace(/[^0-9]/g, '');            
+            let contact = new ContactPhone(item.displayName, phoneNumber);
             this.contactList.push(contact);
           }
           catch (e) {

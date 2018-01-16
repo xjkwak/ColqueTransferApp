@@ -33,6 +33,7 @@ export class RegisterPage {
     .then(result => {
     
       this.afAuth.authState.subscribe(auth => {
+        this.afDatabase.list('/users_phone/').set(this.profile.phone, auth.uid);
         this.afDatabase.list('/profile/').set(auth.uid, this.profile).then(()=> this.navCtrl.push('SyncContactPage'));
       });
 

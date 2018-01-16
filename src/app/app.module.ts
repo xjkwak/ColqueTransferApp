@@ -17,6 +17,8 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule, AngularFireAuth} from 'angularfire2/auth';
 import {AngularFireDatabaseModule, AngularFireDatabase} from 'angularfire2/database';
 import { ProfileProvider } from '../providers/profile/profile';
+import { NotificationProvider } from '../providers/notification/notification';
+import { UserPhoneProvider } from '../providers/user-phone/user-phone';
 
 
  // Initialize Firebase
@@ -58,7 +60,9 @@ import { ProfileProvider } from '../providers/profile/profile';
     HttpClient,
     AngularFireDatabase,
     AngularFireAuth,
-    ProfileProvider
+    ProfileProvider,
+    NotificationProvider,
+    UserPhoneProvider
   ]
 })
 export class AppModule { }
